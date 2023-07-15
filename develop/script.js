@@ -4,11 +4,11 @@ $('#currentDay').text(dayjs().format('dddd, MMMM D, YYYY', 'h:mm A'));
 
 const localeSettings = {};
   dayjs.locale(localeSettings);
-  // Wait until the DOM is fully loaded before executing the code inside the function.
+  
   $(function () {
     // Get the current hour of the day using the dayjs library.
     const currentHour = dayjs().format('H');
-  // The function below changes the color of each time block based on whether it's in the "past, present, or future" relative to the current hour.
+  // color for time blocks.
     function hourlyColor() {
       $('.time-block').each(function() {
         const blockHour = parseInt(this.id);
@@ -17,7 +17,7 @@ const localeSettings = {};
         $(this).toggleClass('future', blockHour > currentHour);
       });
     }
-  // The  function below will save the user's input in a textarea to localStorage - only when the corresponding save button has been clicked.
+  // The  function below will save the input once save is pressed
     function textEntry() {
       $('.saveBtn').on('click', function() {
         const key = $(this).parent().attr('id');
@@ -54,7 +54,7 @@ const localeSettings = {};
       dateElement.text(currentDate);
       timeElement.text(currentTime);
     }
-    // Call the three main functions to set up the page.
+   
     hourlyColor();
     textEntry();                
     refreshColor();
